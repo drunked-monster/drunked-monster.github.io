@@ -1,0 +1,4 @@
+User-Agent: *
+
+Sitemap: http://daodaoliang.com/sitemap.txt
+

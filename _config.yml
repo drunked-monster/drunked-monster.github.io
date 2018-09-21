@@ -1,20 +1,32 @@
-# Site settings
-title: Your awesome title
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
-
-# Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+  use_coderay: true
+highlighter: rouge
 
-paginate: 4
-
-author: Your name
-
+permalink: blog/:year/:month/:day/:title.html
+paginate: 7
+paginate_path: page/:num
+encoding: "utf-8"
+future: true
+lsi: false
+safe: true
 gems: [jekyll-paginate]
+
+blog:
+    name: 没有语言的傻子
+    description: learn and better
+    title: blog of yzh
+    url: blog.yangzuohua.top
+author:
+    name: 阳作华
+    email: 1462928058@qq.com
+    weibo: https://weibo.com/u/6005389353
+    weixin: Y1462928058
+    QQ: 1462928058
+    github: https://github.com/eternity6666
+    logo: /res/img/duo.jpg

@@ -1,88 +1,33 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-  {% include header.html %}
-	<body>
+---
+layout: blog
+post: true
+---
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				{% include head.html %}
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Post -->
-            <article class="post">
-              <header>
-                <div class="title">
-                  <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
-                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-                </div>
-                <div class="meta">
-                  <time class="published" datetime="{{ page.date | date: "%F" }}">{{ page.date | date: "%B %d, %Y" }}</time>
-                  {% for category in page.categories limit:1 %}
-                    <a href="#">{{ category }}</a>
-                  {% endfor %}
-
-        <!--
-        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-        -->
-                </div>
-              </header>
-              {% if page.image %}
-                <a href="{{ page.url }}" class="image featured"><img src="{{page.image}}" alt="" /></a>
-              {% endif %}
-              {{ content }}
-              <footer>
-                <ul class="stats">
-                {% for tag in page.tags limit:3 %}
-                  <li><a href="#">{{ tag }}</a></li>
-                {% endfor %}
-        <!--
-        <li><a href="#">General</a></li>
-        <li><a href="#" class="icon fa-heart">28</a></li>
-        <li><a href="#" class="icon fa-comment">128</a></li>
-        -->
-                </ul>
-              </footer>
-           </article>
-  					<ul class="actions pagination">
-  					  {% if page.previous %}
-  	  				  <li><a href="{{ page.previous.url }}" class="button big previous">Previous Post</a></li>
-  						{% else %}
-  						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
-  						{% endif %}
-							{% if page.next %}
-  						  <li><a href="{{ page.next.url }}" class="button big next">Next Post</a></li>
-  						{% else %}
-  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
-  						{% endif %}
-  					</ul>
-					</div>
-
-				<!-- Sidebar -->
-					<section id="sidebar">
-
-						<!-- Intro -->
-						{% include intro.html %}
-
-						<!-- Mini Posts -->
-						{% include miniposts.html %}
-
-						<!-- Posts List -->
-
-						<!-- About -->
-					  {% include about.html %}
-
-						<!-- Footer -->
-						{% include footer.html %}
-					</section>
-			</div>
-		<!-- Scripts -->
-		{% include scripts.html %}
-	</body>
-</html>
+<header class="post-header">
+  <h1 class="post-title"><a href="{{ page.url }}">{{ page.title }}</a></h1>
+  <p class="post-meta">
+    <i class="fa fa-calendar"></i>
+    {{ page.date | date: "%Y" }}年{{ page.date | date: "%m" }}月{{ page.date | date: "%d" }}日
+    <i class="space"></i>
+    <i class="fa fa-tags"></i>
+    <a class="post-category" href="/page/category.html#{{ page.categories }}">{{ page.categories }}</a>	
+  </p>
+  {% include tongji.html %}
+</header>
+<div class="post-main">
+{{ content }}
+</div>
+{% include share.html %}
+<div class="pagination">
+{% if page.previous %}
+<a class="pagination-item newer" href="{{ BASE_PATH }}{{ page.previous.url }}"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ page.previous.title }}</a>
+{% else %}
+<span class="pagination-item newer">上一篇&nbsp;<i class="fa fa-chain-broken"></i></span>
+{% endif %}
+{% if page.next %}
+<a class="pagination-item older" href="{{ BASE_PATH }}{{ page.next.url }}">{{ page.next.title }}&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+{% else %}
+<span class="pagination-item older">下一篇&nbsp;<i class="fa fa-chain-broken"></i></span>
+{% endif %}
+</div>
+{% if page.duoshuo != false %}{% include duoshuo.html %}{% endif %}
