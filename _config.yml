@@ -18,15 +18,13 @@ safe: true
 gems: [jekyll-paginate]
 
 blog:
-    name: 没有语言的傻子
+    name: yexingming
     description: learn and better
-    title: blog of yzh
-    url: blog.yangzuohua.top
+    title: blog of yxm
+    url: drunked-monster.github.io
 author:
-    name: 阳作华
-    email: 1462928058@qq.com
-    weibo: https://weibo.com/u/6005389353
-    weixin: Y1462928058
-    QQ: 1462928058
-    github: https://github.com/eternity6666
-    logo: /res/img/duo.jpg
+    name: 叶兴明
+    email: 2276579898@qq.com
+    QQ: 2276579898
+    github: https://github.com/drunked-monster
+    logo: /res/img/yexingming.jpg
