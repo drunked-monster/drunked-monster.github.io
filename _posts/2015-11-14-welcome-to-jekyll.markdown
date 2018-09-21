@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome to Jekyll888!"
 date:   2015-11-14 16:52:07
-categories: jekyll update
+categories: jekyll
 tags: jekyll update
 image: /images/pic02.jpg
 ---
