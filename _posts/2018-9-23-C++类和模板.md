@@ -1,0 +1,122 @@
+# 类和模板笔记
+## 类
+- 使用struct和class写类的区别：
+  使用struct关键字，默认的访问权限是public，而使用class的默认访问权限是private，两者唯一的区别就是默认的访问权限的不同
+- private和protect：
+  private成员变量或函数在类的外部是不可访问的，甚至是不可查看的。只有`类和友元函数`可以访问私有成员。
+  protect变量或函数与私有成员十分相似，但有一点不同，保护成员在`派生类（即子类）`中是可访问的。
+  eg:class SmallBox:Box // SmallBox 是Box的派生类
+- 构造函数在定义变量的时候（早于手动为变量赋初值的过程）即会被调用
+- 类的友元函数是定义在类外部，但有权访问类的private成员和protected成员。
+  尽管友元函数的原型有在类的定义中出现过，但是友元函数并不是成员函数。
+  友元可以是一个函数，该函数被称为友元函数；友元也可以是一个类，该类被称为友元类，在这种情况下，整个类及其所有成员都是友元。
+  如果要声明函数为一个类的友元，需要在类定义中该函数原型前使用关键字 friend，如下所示：
+   声明类 ClassTwo 的所有成员函数作为类 ClassOne 的友元，需要在类 ClassOne 的定义中放置如下声明：friend class ClassTwo;
+- 在 C++ 中，每一个对象都能通过 this 指针来访问自己的地址。在成员函数内部，它可以用来指向调用对象。
+  友元函数没有 this 指针，因为友元不是类的成员。只有成员函数才有 this 指针。
+
+## 模板（其实挺简单的，不要被吓到了）
+###函数模板
+- 模板就是把函数定义为对任意数据类型都通用的函数，也叫泛型函数，调用时候根据提供的实参替换成特定的数据类型
+  eg:交换模板:
+  ```javascript
+  template <typename T>//关键字typename或class,定义数据类型为 T（int，double.....)
+  void swap(T &a,T &b){
+	T tmp;
+	tmp=a;
+	a=b;
+	b=tap;
+  }
+  ```
+- <>里面为模板参数，分为类型模板参数（template <typename T>）和非类型模板参数（template<int n,int m>int compare(const char (&p1)[n],const char (&p2)[m]{函数体}）
+###类模板
+正如我们定义函数模板一样，我们也可以定义类模板。泛型类声明的一般形式如下所示：
+```javascript
+template <class typename> class class-name {
+.
+.
+.
+}
+```
+typename定义类型。您可以使用一个逗号分隔的列表来定义多个泛型数据类型。
+
+下面的实例定义了类 Stack<>，并实现了泛型方法来对元素进行入栈出栈操作：
+```javascript
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <string>
+#include <stdexcept>
+
+using namespace std;
+
+template <class T>
+class Stack { 
+  private: 
+    vector<T> elems;     // 元素 
+
+  public: 
+    void push(T const&);  // 入栈
+    void pop();               // 出栈
+    T top() const;            // 返回栈顶元素
+    bool empty() const{       // 如果为空则返回真。
+        return elems.empty(); 
+    } 
+}; 
+
+template <class T>
+void Stack<T>::push (T const& elem) 
+{ 
+    // 追加传入元素的副本
+    elems.push_back(elem);    
+} 
+
+template <class T>
+void Stack<T>::pop () 
+{ 
+    if (elems.empty()) { 
+        throw out_of_range("Stack<>::pop(): empty stack"); 
+    }
+	// 删除最后一个元素
+    elems.pop_back();         
+} 
+
+template <class T>
+T Stack<T>::top () const 
+{ 
+    if (elems.empty()) { 
+        throw out_of_range("Stack<>::top(): empty stack"); 
+    }
+	// 返回最后一个元素的副本 
+    return elems.back();      
+} 
+
+int main() 
+{ 
+    try { 
+        Stack<int>         intStack;  // int 类型的栈 
+        Stack<string> stringStack;    // string 类型的栈 
+
+        // 操作 int 类型的栈 
+        intStack.push(7); 
+        cout << intStack.top() <<endl; 
+
+        // 操作 string 类型的栈 
+        stringStack.push("hello"); 
+        cout << stringStack.top() << std::endl; 
+        stringStack.pop(); 
+        stringStack.pop(); 
+    } 
+    catch (exception const& ex) { 
+        cerr << "Exception: " << ex.what() <<endl; 
+        return -1;
+    } 
+}  
+```
+当上面的代码被编译和执行时，它会产生下列结果：
+```javascript
+7
+hello
+Exception: Stack<>::pop(): empty stack
+```
+
