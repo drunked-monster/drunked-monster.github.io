@@ -1,3 +1,10 @@
+---
+layout: post
+title:  类和模板笔记
+date:   2018-9-23 22:18:07
+categories: C++
+tags: 1
+---
 # 类和模板笔记
 ## 类
 - 使用struct和class写类的区别：
